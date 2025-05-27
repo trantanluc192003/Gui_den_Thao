@@ -2,18 +2,17 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lời chúc gửi Thảo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lá thư gửi Thảo</title>
   <style>
     body {
       margin: 0;
-      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-      height: 100vh;
+      background-color: #d0f0ff;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     .container {
@@ -21,62 +20,49 @@
     }
 
     .envelope {
-      width: 120px;
-      height: 80px;
-      background-color: #fff;
-      border: 2px solid #555;
-      border-radius: 10px;
-      margin: auto;
+      width: 300px;
       cursor: pointer;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       transition: transform 0.3s;
     }
 
     .envelope:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     .message {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      margin-top: 20px;
+      font-size: 20px;
       color: #333;
-      font-size: 1em;
-    }
-
-    .letter {
-      margin-top: 30px;
-      padding: 20px;
-      background: rgba(255,255,255,0.9);
-      border-radius: 15px;
       display: none;
-      animation: fadeIn 1s ease-in-out;
+      animation: fadeIn 1s forwards;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .notice {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #005b94;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="envelope" onclick="openLetter()">
-      <p class="message">Bạn có thư nè!</p>
-    </div>
-    <div class="letter" id="letter">
-      <h1>🎉 Chúc bạn thi TOEIC thật tốt! 🎉</h1>
-      <p>Hãy tự tin, bình tĩnh và làm bài hết sức mình nhé! Mọi người luôn tin tưởng bạn ❤️</p>
-    </div>
-  </div>
 
-  <script>
-    function openLetter() {
-      document.querySelector('.envelope').style.display = 'none';
-      document.getElementById('letter').style.display = 'block';
-    }
-  </script>
+<div class="container">
+  <img src="la_thu.png" alt="Lá thư" class="envelope" onclick="showMessage()">
+  <div class="notice" id="notice">Bạn có thư nè 💌</div>
+  <div class="message" id="message">Chúc bạn Thảo luôn vui vẻ, hạnh phúc và gặp nhiều may mắn trong cuộc sống! 💖</div>
+</div>
+
+<script>
+  function showMessage() {
+    document.getElementById('message').style.display = 'block';
+    document.getElementById('notice').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
