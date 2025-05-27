@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lời chúc gửi Thảo</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .envelope {
+      width: 120px;
+      height: 80px;
+      background-color: #fff;
+      border: 2px solid #555;
+      border-radius: 10px;
+      margin: auto;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    .envelope:hover {
+      transform: scale(1.1);
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #333;
+      font-size: 1em;
+    }
+
+    .letter {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 15px;
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="envelope" onclick="openLetter()">
+      <p class="message">Bạn có thư nè!</p>
+    </div>
+    <div class="letter" id="letter">
+      <h1>🎉 Chúc bạn thi TOEIC thật tốt! 🎉</h1>
+      <p>Hãy tự tin, bình tĩnh và làm bài hết sức mình nhé! Mọi người luôn tin tưởng bạn ❤️</p>
+    </div>
+  </div>
+
+  <script>
+    function openLetter() {
+      document.querySelector('.envelope').style.display = 'none';
+      document.getElementById('letter').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
