@@ -2,67 +2,99 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lá thư gửi Thảo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thư gửi bạn</title>
   <style>
     body {
       margin: 0;
-      background-color: #d0f0ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background-color: #a3d5ff;
       font-family: 'Segoe UI', sans-serif;
+      text-align: center;
     }
 
     .container {
-      text-align: center;
+      position: relative;
+      margin-top: 50px;
     }
 
     .envelope {
       width: 300px;
       cursor: pointer;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
     }
 
     .envelope:hover {
       transform: scale(1.05);
     }
 
-    .message {
+    .notification {
       margin-top: 20px;
-      font-size: 20px;
-      color: #333;
-      display: none;
-      animation: fadeIn 1s forwards;
+      font-size: 1.5em;
+      color: #004080;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .message-box {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
     }
 
-    .notice {
-      margin-top: 20px;
-      font-size: 22px;
-      color: #005b94;
+    .paper {
+      width: 400px;
+    }
+
+    .message-text {
+      position: absolute;
+      top: 60px;
+      left: 50px;
+      right: 50px;
+      font-size: 1.2em;
+      text-align: left;
+      white-space: pre-wrap;
+      color: #0072b1;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
+    <div class="notification" id="notification">📬 Bạn có thư nè! Click vào lá thư!</div>
 
-<div class="container">
-  <img src="la_thu.png" alt="Lá thư" class="envelope" onclick="showMessage()">
-  <div class="notice" id="notice">Bạn có thư nè 💌</div>
-  <div class="message" id="message">Chúc Thảo thi tốt nè, bình tĩnh, tự tin nhé! 💖</div>
-</div>
+    <div class="message-box" id="messageBox" style="display: none;">
+      <img src="paper.jpg" alt="Tờ giấy" class="paper">
+      <p id="messageText" class="message-text"></p>
+    </div>
+  </div>
 
-<script>
-  function showMessage() {
-    document.getElementById('message').style.display = 'block';
-    document.getElementById('notice').style.display = 'none';
-  }
-</script>
+  <script>
+    const envelope = document.getElementById("envelope");
+    const messageBox = document.getElementById("messageBox");
+    const notification = document.getElementById("notification");
+    const messageText = document.getElementById("messageText");
 
+    const message = "Chúc em thi thật tốt, bình tĩnh, tự tin lên nhé🍀🌈✨❤️ ";
+
+    envelope.addEventListener("click", () => {
+      envelope.style.display = "none";
+      notification.style.display = "none";
+      messageBox.style.display = "inline-block";
+      typeMessage();
+    });
+
+    function typeMessage() {
+      let i = 0;
+      const speed = 50;
+
+      function type() {
+        if (i < message.length) {
+          messageText.textContent += message.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+
+      type();
+    }
+  </script>
 </body>
 </html>
