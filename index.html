@@ -87,7 +87,7 @@
 
     .message-text {
       position: absolute;
-      top: 100px;
+      top: 120px;
       left: 50px;
       right: 50px;
       font-size: 1em;
@@ -131,11 +131,12 @@
     const notification = document.getElementById("notification");
     const messageText = document.getElementById("messageText");
     const loadingGif = document.getElementById("loading");
-    const message = "Thảo ơi, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg!!🍀🌈✨❤️ ";
+    const message = "Thảo ơi, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg!!!!!🍀🌈✨❤️ ";
 
     envelope?.addEventListener("click", () => {
       envelope.style.display = "none";
       notification.style.display = "none";
+      loadingGif.style.display = "none";
       messageBox.style.display = "inline-block";
       typeMessage();
     });
