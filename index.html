@@ -3,13 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thư gửi bạn</title>
+  <title>Thư gửi Thảo</title>
   <style>
     body {
       margin: 0;
-      background-color: #a3d5ff;
+      background-color: #fff4f0;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
+    }
+
+    .welcome-screen, .letter-screen {
+      display: none;
+    }
+
+    .welcome-screen.active {
+      display: block;
+      padding: 40px 20px;
+    }
+
+    .welcome-img {
+      width: 250px;
+      max-width: 80%;
+    }
+
+    .welcome-text {
+      font-size: 1.8em;
+      margin-top: 20px;
+      color: #ff4d6d;
+    }
+
+    .continue-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #ff90b3;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .continue-btn:hover {
+      background-color: #ff7099;
     }
 
     .container {
@@ -54,7 +90,7 @@
       top: 80px;
       left: 50px;
       right: 50px;
-      font-size: 1.0em;
+      font-size: 1em;
       text-align: left;
       white-space: pre-wrap;
       color: #0072b1;
@@ -62,29 +98,42 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
 
-    
-    <img src="GIF_loading.gif" alt="Đang tải" class="gif-loading">
+  <!-- Welcome Screen -->
+  <div class="welcome-screen active" id="welcomeScreen">
+    <img src="th.jpg" alt="Welcome" class="welcome-img">
+    <div class="welcome-text">Hello Thảo >.&lt;</div>
+    <button class="continue-btn" onclick="showLetterScreen()">Click vào đây để tiếp tục nhé !</button>
+  </div>
 
-    <div class="notification" id="notification">📬Thảo ơi, Bạn có thư nè! Click vào lá thư nhé!</div>
+  <!-- Letter Screen -->
+  <div class="letter-screen" id="letterScreen">
+    <div class="container">
+      <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
+      <img src="GIF_loading.gif" alt="Đang tải" class="gif-loading">
+      <div class="notification" id="notification">📬Thảo ơi, Bạn có thư nè! Click vào lá thư nhé!</div>
 
-    <div class="message-box" id="messageBox" style="display: none;">
-      <img src="paper.jpg" alt="Tờ giấy" class="paper">
-      <p id="messageText" class="message-text"></p>
+      <div class="message-box" id="messageBox" style="display: none;">
+        <img src="paper.jpg" alt="Tờ giấy" class="paper">
+        <p id="messageText" class="message-text"></p>
+      </div>
     </div>
   </div>
 
   <script>
+    function showLetterScreen() {
+      document.getElementById("welcomeScreen").style.display = "none";
+      document.getElementById("letterScreen").style.display = "block";
+    }
+
     const envelope = document.getElementById("envelope");
     const messageBox = document.getElementById("messageBox");
     const notification = document.getElementById("notification");
     const messageText = document.getElementById("messageText");
 
-    const message = "Thảo ơi, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Figtingggg🍀🌈✨❤️ ";
+    const message = "Thảo ơi, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg🍀🌈✨❤️ ";
 
-    envelope.addEventListener("click", () => {
+    envelope?.addEventListener("click", () => {
       envelope.style.display = "none";
       notification.style.display = "none";
       messageBox.style.display = "inline-block";
