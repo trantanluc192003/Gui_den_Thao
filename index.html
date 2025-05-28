@@ -87,7 +87,7 @@
 
     .message-text {
       position: absolute;
-      top: 80px;
+      top: 60px;
       left: 50px;
       right: 50px;
       font-size: 1em;
@@ -110,7 +110,7 @@
   <div class="letter-screen" id="letterScreen">
     <div class="container">
       <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
-      <img src="GIF_ld.gif" alt="Đang tải" class="gif-loading">
+      <img src="GIF_ld.gif" alt="Đang tải" class="gif-loading" id="loading">
       <div class="notification" id="notification">📬Thảo ơi, Bạn có thư nè! Click vào lá thư nhé!</div>
 
       <div class="message-box" id="messageBox" style="display: none;">
@@ -130,7 +130,7 @@
     const messageBox = document.getElementById("messageBox");
     const notification = document.getElementById("notification");
     const messageText = document.getElementById("messageText");
-
+    const loadingGif = document.getElementById("loading");
     const message = "Thảo ơi, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg🍀🌈✨❤️ ";
 
     envelope?.addEventListener("click", () => {
