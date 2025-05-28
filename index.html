@@ -10,6 +10,7 @@
       background-color: #fff4f0;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
+      overflow-x: hidden;
     }
 
     .welcome-screen, .letter-screen {
@@ -95,6 +96,27 @@
       white-space: pre-wrap;
       color: #0072b1;
     }
+
+    /* 🍀 CSS cho cỏ rơi */
+    .clover {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      z-index: 1000;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -150,10 +172,34 @@
           messageText.textContent += message.charAt(i);
           i++;
           setTimeout(type, speed);
+        } else {
+          // Sau khi hiện hết, bắt đầu hiệu ứng cỏ rơi
+          startFallingClovers();
         }
       }
 
       type();
+    }
+
+    function startFallingClovers() {
+      const total = 20; // số lượng lá
+      for (let i = 0; i < total; i++) {
+        const clover = document.createElement("img");
+        clover.src = "4la.png";
+        clover.className = "clover";
+
+        // Rơi từ bên trái hoặc phải
+        const side = Math.random() < 0.5 ? 0 : window.innerWidth - 30;
+        clover.style.left = `${side + Math.random() * 40}px`;
+
+        // Thời gian rơi khác nhau
+        clover.style.animationDuration = `${3 + Math.random() * 2}s`;
+
+        document.body.appendChild(clover);
+
+        // Tự xóa sau khi animation xong
+        setTimeout(() => clover.remove(), 6000);
+      }
     }
   </script>
 </body>
