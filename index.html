@@ -27,8 +27,14 @@
       transform: scale(1.05);
     }
 
+    .gif-loading {
+      width: 100px;
+      margin: 20px auto 10px;
+      display: block;
+    }
+
     .notification {
-      margin-top: 20px;
+      margin-top: 10px;
       font-size: 1.5em;
       color: #004080;
     }
@@ -48,7 +54,7 @@
       top: 80px;
       left: 50px;
       right: 50px;
-      font-size: 1.2em;
+      font-size: 1.0em;
       text-align: left;
       white-space: pre-wrap;
       color: #0072b1;
@@ -58,6 +64,10 @@
 <body>
   <div class="container">
     <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
+
+    
+    <img src="GIF_loading.gif" alt="Đang tải" class="gif-loading">
+
     <div class="notification" id="notification">📬Thảo ơi, Bạn có thư nè! Click vào lá thư nhé!</div>
 
     <div class="message-box" id="messageBox" style="display: none;">
