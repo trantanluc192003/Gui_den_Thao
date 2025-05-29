@@ -19,23 +19,23 @@
 
     .welcome-screen.active {
       display: block;
-      padding: 40px 20px;
+      padding: 100px 20px 40px;
     }
 
     .welcome-img {
-      width: 250px;
+      width: 300px;
       max-width: 80%;
     }
 
     .welcome-text {
-      font-size: 1.8em;
-      margin-top: 20px;
+      font-size: 2em;
+      margin-top: 30px;
       color: #ff4d6d;
     }
 
     .continue-btn {
-      margin-top: 30px;
-      padding: 10px 20px;
+      margin-top: 40px;
+      padding: 12px 24px;
       font-size: 1.2em;
       background-color: #ff90b3;
       border: none;
@@ -120,6 +120,24 @@
       }
     }
 
+    /* ✨ Hiệu ứng chuyển trang */
+    .fade-in {
+      animation: fadeIn 1s forwards;
+    }
+
+    .fade-out {
+      animation: fadeOut 0.7s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -147,8 +165,16 @@
 
   <script>
     function showLetterScreen() {
-      document.getElementById("welcomeScreen").style.display = "none";
-      document.getElementById("letterScreen").style.display = "block";
+      const welcome = document.getElementById("welcomeScreen");
+      const letter = document.getElementById("letterScreen");
+
+      welcome.classList.add("fade-out");
+
+      setTimeout(() => {
+        welcome.style.display = "none";
+        letter.style.display = "block";
+        letter.classList.add("fade-in");
+      }, 700);
     }
 
     const envelope = document.getElementById("envelope");
@@ -156,6 +182,7 @@
     const notification = document.getElementById("notification");
     const messageText = document.getElementById("messageText");
     const loadingGif = document.getElementById("loading");
+
     const message = "Gửi Thảo, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg!!!!!🍀🌈✨❤️ ";
 
     envelope?.addEventListener("click", () => {
@@ -176,7 +203,6 @@
           i++;
           setTimeout(type, speed);
         } else {
-          // Bắt đầu rơi lá cỏ liên tục sau khi hiển thị xong thư
           startFallingCloversContinuously();
         }
       }
@@ -200,7 +226,7 @@
     }
 
     function startFallingCloversContinuously() {
-      setInterval(createClover, 200); // tạo 1 lá mới mỗi 200ms
+      setInterval(createClover, 200);
     }
   </script>
 </body>
