@@ -57,7 +57,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding-top: 100px;
+      padding-top: 60px; /* nâng lên cao hơn */
     }
 
     .envelope {
@@ -65,6 +65,7 @@
       cursor: pointer;
       transition: transform 0.3s ease;
       display: none;
+      margin-top: 40px; /* nâng lên cao hơn */
     }
 
     .envelope:hover {
@@ -78,7 +79,7 @@
     }
 
     .notification {
-      margin-top: 20px;
+      margin-top: 30px;
       font-size: 1.5em;
       color: #004080;
       display: none;
@@ -120,15 +121,18 @@
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
+
     @keyframes wave {
       0% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      30% { transform: translateY(-10px); }
+      60% { transform: translateY(0); }
       100% { transform: translateY(0); }
     }
 
-    .wave-char {
+    .wave span {
       display: inline-block;
-      animation: wave 1s ease-in-out infinite;
+      animation: wave 1s ease-in-out;
+      animation-fill-mode: both;
     }
   </style>
 </head>
@@ -146,8 +150,7 @@
     <div class="container">
       <img src="GIF_ld.gif" alt="Đang tải" class="gif-loading" id="loading">
       <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
-      <div class="notification" id="notification">📬<span id="waveText">Thảo ơi, Có một lá thư vừa được gửi đến bạn ! Hãy click vào lá thư để mở nhé !</span>
-      </div>
+      <div class="notification wave" id="notification"></div>
 
       <div class="message-box" id="messageBox" style="display: none;">
         <img src="paper.jpg" alt="Tờ giấy" class="paper">
@@ -165,19 +168,28 @@
       const envelope = document.getElementById("envelope");
       const notification = document.getElementById("notification");
 
-      // Hiện GIF trước
       loadingGif.style.display = "block";
 
-      // Sau 2s: hiện lá thư
       setTimeout(() => {
         loadingGif.style.display = "none";
         envelope.style.display = "block";
       }, 2000);
 
-      // Sau 3s: hiện thông báo
       setTimeout(() => {
         notification.style.display = "block";
+        animateNotificationWave("📬 Ting ting! Thảo ơi, Có một lá thư vừa được gửi đến bạn ! Hãy click vào lá thư để mở nhé !");
       }, 3000);
+    }
+
+    function animateNotificationWave(text) {
+      const notification = document.getElementById("notification");
+      notification.innerHTML = '';
+      [...text].forEach((char, i) => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        span.style.animationDelay = `${i * 0.07}s`;
+        notification.appendChild(span);
+      });
     }
 
     const envelope = document.getElementById("envelope");
@@ -224,20 +236,7 @@
     function startFallingCloversContinuously() {
       setInterval(createClover, 200);
     }
-    function applyWaveEffectToText() {
-    const textEl = document.getElementById("waveText");
-    const text = textEl.textContent;
-    textEl.innerHTML = ''; // clear existing text
-
-    [...text].forEach((char, i) => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      span.className = 'wave-char';
-      span.style.animationDelay = `${i * 0.05}s`;
-      textEl.appendChild(span);
-    });
-  }
   </script>
 
 </body>
-</html>
+</html
