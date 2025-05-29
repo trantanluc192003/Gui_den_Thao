@@ -19,12 +19,12 @@
 
     .welcome-screen.active {
       display: block;
-      padding: 100px 20px 40px;
+      padding: 80px 20px 40px;
     }
 
     .welcome-img {
       width: 300px;
-      max-width: 80%;
+      max-width: 90%;
     }
 
     .welcome-text {
@@ -34,7 +34,7 @@
     }
 
     .continue-btn {
-      margin-top: 40px;
+      margin-top: 30px;
       padding: 12px 24px;
       font-size: 1.2em;
       background-color: #ff90b3;
@@ -51,7 +51,12 @@
 
     .container {
       position: relative;
-      margin-top: 50px;
+      height: 100vh;  
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .envelope {
@@ -67,12 +72,12 @@
 
     .gif-loading {
       width: 100px;
-      margin: 20px auto 10px;
+      margin: 20px auto;
       display: none;
     }
 
     .notification {
-      margin-top: 10px;
+      margin-top: 20px;
       font-size: 1.5em;
       color: #004080;
       display: none;
@@ -99,7 +104,6 @@
       color: #0072b1;
     }
 
-    /* 🍀 CSS cho cỏ rơi */
     .clover {
       position: fixed;
       top: -50px;
@@ -112,33 +116,8 @@
     }
 
     @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* ✨ Hiệu ứng chuyển trang */
-    .fade-in {
-      animation: fadeIn 1s forwards;
-    }
-
-    .fade-out {
-      animation: fadeOut 0.7s forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
@@ -156,7 +135,7 @@
     <div class="container">
       <img src="GIF_ld.gif" alt="Đang tải" class="gif-loading" id="loading">
       <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
-      <div class="notification" id="notification">📬Thảo ơi, Bạn có thư nè! Click vào đây để mở thư nhé !</div>
+      <div class="notification" id="notification">📬 Thảo ơi, Bạn có thư nè! Click vào đây để mở thư nhé !</div>
 
       <div class="message-box" id="messageBox" style="display: none;">
         <img src="paper.jpg" alt="Tờ giấy" class="paper">
@@ -166,39 +145,37 @@
   </div>
 
   <script>
-    const welcomeScreen = document.getElementById("welcomeScreen");
-    const letterScreen = document.getElementById("letterScreen");
-    const loadingGif = document.getElementById("loading");
+    function showLetterScreen() {
+      document.getElementById("welcomeScreen").style.display = "none";
+      document.getElementById("letterScreen").style.display = "block";
+
+      const loadingGif = document.getElementById("loading");
+      const envelope = document.getElementById("envelope");
+      const notification = document.getElementById("notification");
+
+      // Hiện GIF trước
+      loadingGif.style.display = "block";
+
+      // Sau 2s: hiện lá thư
+      setTimeout(() => {
+        loadingGif.style.display = "none";
+        envelope.style.display = "block";
+      }, 2000);
+
+      // Sau 3s: hiện thông báo
+      setTimeout(() => {
+        notification.style.display = "block";
+      }, 3000);
+    }
+
     const envelope = document.getElementById("envelope");
-    const notification = document.getElementById("notification");
     const messageBox = document.getElementById("messageBox");
     const messageText = document.getElementById("messageText");
-
     const message = "Gửi Thảo, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg!!!!!🍀🌈✨❤️ ";
-
-    function showLetterScreen() {
-      welcomeScreen.classList.add("fade-out");
-
-      setTimeout(() => {
-        welcomeScreen.style.display = "none";
-        letterScreen.style.display = "block";
-        letterScreen.classList.add("fade-in");
-
-        // Hiện gif trước
-        loadingGif.style.display = "block";
-
-        // Sau 3s thì hiện envelope và dòng chữ
-        setTimeout(() => {
-          loadingGif.style.display = "none";
-          envelope.style.display = "block";
-          notification.style.display = "block";
-        }, 3000);
-      }, 700);
-    }
 
     envelope?.addEventListener("click", () => {
       envelope.style.display = "none";
-      notification.style.display = "none";
+      document.getElementById("notification").style.display = "none";
       messageBox.style.display = "inline-block";
       typeMessage();
     });
@@ -224,14 +201,11 @@
       const clover = document.createElement("img");
       clover.src = "4la.png";
       clover.className = "clover";
-
       const size = 20 + Math.random() * 30;
       clover.style.width = `${size}px`;
       clover.style.left = `${Math.random() * window.innerWidth}px`;
       clover.style.animationDuration = `${3 + Math.random() * 3}s`;
-
       document.body.appendChild(clover);
-
       setTimeout(() => clover.remove(), 7000);
     }
 
@@ -239,5 +213,6 @@
       setInterval(createClover, 200);
     }
   </script>
+
 </body>
 </html>
