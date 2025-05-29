@@ -120,6 +120,16 @@
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
+    @keyframes wave {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    .wave-char {
+      display: inline-block;
+      animation: wave 1s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
@@ -136,7 +146,8 @@
     <div class="container">
       <img src="GIF_ld.gif" alt="Đang tải" class="gif-loading" id="loading">
       <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
-      <div class="notification" id="notification">📬 Thảo ơi, Bạn có thư nè! Click vào lá thư để mở nhé !</div>
+      <div class="notification" id="notification">📬<span id="waveText">Thảo ơi, Bạn có thư nè! Click vào lá thư để mở nhé !</span>
+      </div>
 
       <div class="message-box" id="messageBox" style="display: none;">
         <img src="paper.jpg" alt="Tờ giấy" class="paper">
@@ -213,6 +224,19 @@
     function startFallingCloversContinuously() {
       setInterval(createClover, 200);
     }
+    function applyWaveEffectToText() {
+    const textEl = document.getElementById("waveText");
+    const text = textEl.textContent;
+    textEl.innerHTML = ''; // clear existing text
+
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.className = 'wave-char';
+      span.style.animationDelay = `${i * 0.05}s`;
+      textEl.appendChild(span);
+    });
+  }
   </script>
 
 </body>
