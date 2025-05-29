@@ -57,7 +57,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding-top: 60px; /* nâng lên cao hơn */
+      padding-top: 60px;
     }
 
     .envelope {
@@ -65,7 +65,7 @@
       cursor: pointer;
       transition: transform 0.3s ease;
       display: none;
-      margin-top: 40px; /* nâng lên cao hơn */
+      margin-top: 40px;
     }
 
     .envelope:hover {
@@ -121,19 +121,6 @@
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
-
-    @keyframes wave {
-      0% { transform: translateY(0); }
-      30% { transform: translateY(-10px); }
-      60% { transform: translateY(0); }
-      100% { transform: translateY(0); }
-    }
-
-    .wave span {
-      display: inline-block;
-      animation: wave 1s ease-in-out;
-      animation-fill-mode: both;
-    }
   </style>
 </head>
 <body>
@@ -150,7 +137,7 @@
     <div class="container">
       <img src="GIF_ld.gif" alt="Đang tải" class="gif-loading" id="loading">
       <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
-      <div class="notification wave" id="notification"></div>
+      <div class="notification" id="notification"></div>
 
       <div class="message-box" id="messageBox" style="display: none;">
         <img src="paper.jpg" alt="Tờ giấy" class="paper">
@@ -177,19 +164,24 @@
 
       setTimeout(() => {
         notification.style.display = "block";
-        animateNotificationWave("📬 Ting ting ! Thảo ơi, Có một lá thư vừa được gửi đến bạn ! Hãy click vào lá thư để mở nhé !");
+        animateNotificationTyping("📬 Tíng ting ! Thảo ơi, Bạn vừa nhận được thư này ! Hãy click vào lá thư để mở nhé !");
       }, 3000);
     }
 
-    function animateNotificationWave(text) {
+    function animateNotificationTyping(text) {
       const notification = document.getElementById("notification");
       notification.innerHTML = '';
-      [...text].forEach((char, i) => {
-        const span = document.createElement("span");
-        span.textContent = (char === " ") ? '\u00A0' : char;
-        span.style.animationDelay = `${i * 0.07}s`;
-        notification.appendChild(span);
-      });
+      let i = 0;
+
+      function type() {
+        if (i < text.length) {
+          notification.innerHTML += (text[i] === " ") ? "&nbsp;" : text[i];
+          i++;
+          setTimeout(type, 50);
+        }
+      }
+
+      type();
     }
 
     const envelope = document.getElementById("envelope");
@@ -239,4 +231,4 @@
   </script>
 
 </body>
-</html
+</html>
