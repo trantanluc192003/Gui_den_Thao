@@ -58,6 +58,7 @@
       width: 300px;
       cursor: pointer;
       transition: transform 0.3s ease;
+      display: none;
     }
 
     .envelope:hover {
@@ -67,13 +68,14 @@
     .gif-loading {
       width: 100px;
       margin: 20px auto 10px;
-      display: block;
+      display: none;
     }
 
     .notification {
       margin-top: 10px;
       font-size: 1.5em;
       color: #004080;
+      display: none;
     }
 
     .message-box {
@@ -152,8 +154,8 @@
   <!-- Letter Screen -->
   <div class="letter-screen" id="letterScreen">
     <div class="container">
-      <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
       <img src="GIF_ld.gif" alt="Đang tải" class="gif-loading" id="loading">
+      <img src="envelope.png" alt="Lá thư" class="envelope" id="envelope">
       <div class="notification" id="notification">📬Thảo ơi, Bạn có thư nè! Click vào đây để mở thư nhé !</div>
 
       <div class="message-box" id="messageBox" style="display: none;">
@@ -164,31 +166,39 @@
   </div>
 
   <script>
-    function showLetterScreen() {
-      const welcome = document.getElementById("welcomeScreen");
-      const letter = document.getElementById("letterScreen");
-
-      welcome.classList.add("fade-out");
-
-      setTimeout(() => {
-        welcome.style.display = "none";
-        letter.style.display = "block";
-        letter.classList.add("fade-in");
-      }, 700);
-    }
-
-    const envelope = document.getElementById("envelope");
-    const messageBox = document.getElementById("messageBox");
-    const notification = document.getElementById("notification");
-    const messageText = document.getElementById("messageText");
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const letterScreen = document.getElementById("letterScreen");
     const loadingGif = document.getElementById("loading");
+    const envelope = document.getElementById("envelope");
+    const notification = document.getElementById("notification");
+    const messageBox = document.getElementById("messageBox");
+    const messageText = document.getElementById("messageText");
 
     const message = "Gửi Thảo, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg!!!!!🍀🌈✨❤️ ";
+
+    function showLetterScreen() {
+      welcomeScreen.classList.add("fade-out");
+
+      setTimeout(() => {
+        welcomeScreen.style.display = "none";
+        letterScreen.style.display = "block";
+        letterScreen.classList.add("fade-in");
+
+        // Hiện gif trước
+        loadingGif.style.display = "block";
+
+        // Sau 3s thì hiện envelope và dòng chữ
+        setTimeout(() => {
+          loadingGif.style.display = "none";
+          envelope.style.display = "block";
+          notification.style.display = "block";
+        }, 3000);
+      }, 700);
+    }
 
     envelope?.addEventListener("click", () => {
       envelope.style.display = "none";
       notification.style.display = "none";
-      loadingGif.style.display = "none";
       messageBox.style.display = "inline-block";
       typeMessage();
     });
