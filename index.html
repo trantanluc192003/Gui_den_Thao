@@ -121,6 +121,20 @@
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
+    @keyframes fly-in {
+      0% {
+        transform: translate(300px, 400px) scale(0.3);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .envelope.fly-in {
+      animation: fly-in 1s ease-out forwards;
+    }
   </style>
 </head>
 <body>
@@ -160,6 +174,7 @@
       setTimeout(() => {
         loadingGif.style.display = "none";
         envelope.style.display = "block";
+        envelope.classList.add("fly-in");
       }, 2000);
 
       setTimeout(() => {
@@ -187,7 +202,7 @@
     const envelope = document.getElementById("envelope");
     const messageBox = document.getElementById("messageBox");
     const messageText = document.getElementById("messageText");
-    const message = "Gửi Thảo nè, anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg!!!!!🍀🌈✨❤️ ";
+    const message = "Gửi Thảo nè, Anh chúc em thi thật tốt nhé, hãy bình tĩnh, tự tin và tập trung làm bài nhé. Anh chúc em đạt được mục tiêu của mình, cố lên nhé! Fightingggg!!!!!🍀🌈✨❤️ ";
 
     envelope?.addEventListener("click", () => {
       envelope.style.display = "none";
