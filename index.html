@@ -168,6 +168,24 @@
     .envelope.fly-in {
       animation: fly-in 1s ease-out forwards;
     }
+    .knock-text {
+      position: absolute;
+      bottom: 120px;
+      font-size: 2.2em;
+      color: #ff4d6d;
+      animation: bounce 1s infinite;
+      font-weight: bold;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -175,6 +193,7 @@
   <!-- Knock Screen -->
   <div id="knockScreen">
     <img src="knock.gif" alt="Knocking" class="gif-knock">
+    <div class="knock-text">Cốc cốc cốc...</div>
   </div>
 
   <!-- Welcome Screen -->
