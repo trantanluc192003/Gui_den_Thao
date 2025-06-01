@@ -15,16 +15,14 @@
 
     /* Knock screen */
     #knockScreen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position:  relative;
+      height: 100vh;
       background-color: #fff4f0;
       display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* đẩy nội dung lên đầu */
       align-items: center;
-      justify-content: center;
-      z-index: 1000;
+      padding-top: 60px; /* đẩy nội dung xuống một chút, tuỳ chỉnh */
     }
 
     .gif-knock {
@@ -177,11 +175,10 @@
       font-weight: bold;
     }
     .gif-knock {
-      width: 220px; /* hoặc kích thước phù hợp bạn muốn */
-      margin-top: 0px; /* giảm giá trị này để đẩy ảnh lên cao */
+      width: 220px; /* hoặc kích thước phù hợp bạn muốn */     
       display: block;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
+      
     }
     @keyframes bounce {
       0%, 100% {
