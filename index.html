@@ -184,6 +184,25 @@
         transform: translateY(-12px);
       }
     }
+
+    .gif-cv {
+      position: fixed;
+      width: 120px;
+      height: auto;
+      z-index: 999;
+      display: none;
+      opacity: 0.9;
+    }
+
+    .gif-cv.left {
+      bottom: 10px;
+      left: 10px;
+    }
+
+    .gif-cv.right {
+      bottom: 10px;
+      right: 10px;
+    }
   </style>
 </head>
 <body>
@@ -218,6 +237,10 @@
       </div>
     </div>
   </div>
+
+  <!-- GIF cổ vũ -->
+  <img src="GIF_CV.gif" alt="Cổ vũ" class="gif-cv left" id="gifCVLeft">
+  <img src="GIF_CV.gif" alt="Cổ vũ" class="gif-cv right" id="gifCVRight">
 
   <script>
     const bgMusic = document.getElementById("bgMusic");
@@ -288,10 +311,12 @@
       let i = 0;
       const speed = 50;
 
-      // nhac
+      // phát nhạc và hiện GIF sau 5 giây
       setTimeout(() => {
         bgMusic.play();
-      }, 10000);
+        document.getElementById("gifCVLeft").style.display = "block";
+        document.getElementById("gifCVRight").style.display = "block";
+      }, 5000);
 
       function type() {
         if (i < message.length) {
