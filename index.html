@@ -15,14 +15,14 @@
 
     /* Knock screen */
     #knockScreen {
-      position:  relative;
+      position: relative;
       height: 100vh;
       background-color: #fff4f0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* đẩy nội dung lên đầu */
+      justify-content: flex-start;
       align-items: center;
-      padding-top: 60px; /* đẩy nội dung xuống một chút, tuỳ chỉnh */
+      padding-top: 60px;
     }
 
     .gif-knock {
@@ -166,6 +166,7 @@
     .envelope.fly-in {
       animation: fly-in 1s ease-out forwards;
     }
+
     .knock-text {
       position: absolute;
       bottom: 400px;
@@ -174,12 +175,7 @@
       animation: bounce 1s infinite;
       font-weight: bold;
     }
-    .gif-knock {
-      width: 220px; /* hoặc kích thước phù hợp bạn muốn */     
-      display: block;
-      margin: 0 auto;
-      
-    }
+
     @keyframes bounce {
       0%, 100% {
         transform: translateY(0);
@@ -188,10 +184,12 @@
         transform: translateY(-12px);
       }
     }
-
   </style>
 </head>
 <body>
+
+  <!-- Âm thanh -->
+  <audio id="bgMusic" src="nhac.mp3" preload="auto"></audio>
 
   <!-- Knock Screen -->
   <div id="knockScreen">
@@ -222,7 +220,8 @@
   </div>
 
   <script>
-    // Hiển thị knock.gif trước, sau 2 giây chuyển sang welcome
+    const bgMusic = document.getElementById("bgMusic");
+
     window.onload = function () {
       const knockScreen = document.getElementById("knockScreen");
       const welcomeScreen = document.getElementById("welcomeScreen");
@@ -275,6 +274,7 @@
     const messageBox = document.getElementById("messageBox");
     const messageText = document.getElementById("messageText");
     const signature = document.getElementById("signature");
+
     const message = "Gửi Thảo nè, sắp tới em có bài thi cuối kì và bài thi TOEIC quan trọng, anh chúc em thi thật tốt nhé, hãy luôn giữ bình tĩnh, tự tin và tập trung làm bài thật tốt nhé. Chúc em đạt được mục tiêu của mình, cố lên nhé !! Fightingggg!!!!!🍀🎯🌈✨❤️  ";
 
     envelope?.addEventListener("click", () => {
@@ -287,6 +287,11 @@
     function typeMessage() {
       let i = 0;
       const speed = 50;
+
+      // Phát nhạc sau 5 giây kể từ khi bắt đầu gõ nội dung
+      setTimeout(() => {
+        bgMusic.play();
+      }, 5000);
 
       function type() {
         if (i < message.length) {
@@ -318,6 +323,5 @@
       setInterval(createClover, 200);
     }
   </script>
-
 </body>
 </html>
